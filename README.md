@@ -40,8 +40,8 @@ The current decision policy is:
 The current system does not use:
 
 • Manual review
-•  Loan officer approval
-•  Review Required
+• Loan officer approval
+• Review Required
 • More Information Required
 
 All current decisions are made automatically using validation rules and rule-based risk checks.
