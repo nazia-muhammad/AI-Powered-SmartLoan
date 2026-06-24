@@ -63,3 +63,19 @@ All planned Postman test cases returned the expected JSON responses.
 ## Current Status
 
 The Stage 1 backend prototype is working locally through FastAPI and has been tested using Postman.
+
+## API Response Fields
+
+The SmartLoan API now includes two additional fields in every response:
+
+• decision_category - identifies whether the result is an approval, rejection or validation error. 
+• input_source - records where the application data come from. 
+
+Current values:
+
+• Approved application → decision_category: approval
+• Rejection application → decision_category: rejection
+• Invalid application → decision_category: validation_error 
+• Current input source → input_source: customer_api_json
+
+These fields improve response clarity and prepare the system for future input sources. 

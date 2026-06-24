@@ -142,6 +142,7 @@ The endpoint accepts applicant data as JSON and returns the loan evaluation resu
 ```json
 {
   "decision": "Approved",
+  "decision_category": "approval",
   "risk_level": "Low",
   "risk_score": 0,
   "reasons": [
@@ -150,7 +151,9 @@ The endpoint accepts applicant data as JSON and returns the loan evaluation resu
     "Credit score is acceptable.",
     "No missed payments found.",
     "Requested loan amount is acceptable."
-  ]
+  ],
+ "input_source": "customer_api_json"
+
 }
 ```
 

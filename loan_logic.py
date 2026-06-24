@@ -163,12 +163,15 @@ def make_decision(risk_result):
     # Medium and High risk applicants are rejected
     if risk_level == "Low":
         decision = "Approved"
+        decision_category = "approval"
     else:
         decision = "Rejected"
+        decision_category = "rejection"
         
     # Return final decision output 
     return {
         "decision": decision,
+        "decision_category": decision_category,
         "risk_level": risk_level,
         "risk_score": risk_result["risk_score"],
         "reasons": risk_result["reasons"]
@@ -182,6 +185,8 @@ def evaluate_loan_application(applicant):
     
     # Step 2: If input is invalid, stop and return validation errors
     if validation_result["is_valid"] == False:
+        validation_result["decision_category"] = "validation_error"
+        validation_result["input_source"] = "customer_api_json"
         return validation_result
     
     # Step 3: If input is valid, calculate risk 
@@ -189,6 +194,7 @@ def evaluate_loan_application(applicant):
     
     # Step 4: Make final Approved / Rejected decision
     decision_result = make_decision(risk_result)
+    decision_result["input_source"] = "customer_api_json"
     
     # Step 5: Return final decision result
     return decision_result

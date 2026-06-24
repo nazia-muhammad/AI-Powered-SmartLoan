@@ -5,7 +5,7 @@ app = FastAPI()
 
 @app.get("/")
 def home():
-    return {"message": "SmartLaon API is running"}
+    return {"message": "SmartLoan API is running"}
 
 @app.post("/loan/evaluate")
 def evaluate_loan(applicant: dict):
