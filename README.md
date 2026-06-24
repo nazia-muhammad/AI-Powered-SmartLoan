@@ -6,11 +6,11 @@ AI-Powered SmartLoan is a Stage 1 backend prototype for evaluating basic loan el
 
 The prototype accepts customer loan application data, validates the input, applies simple rule-based risk checks and returns a structured JSON response with:
 
-* Decision: Approved or Rejected
-* Risk level: Low, Medium or High
-* Risk score
-* Reasons for the decision
-* Validation errors when input is missing or invalid
+• Decision: Approved or Rejected
+• Risk level: Low, Medium or High
+• Risk score
+• Reasons for the decision
+• Validation errors when input is missing or invalid
 
 This version is focused on backend logic and API testing only.
 
@@ -18,14 +18,33 @@ This version is focused on backend logic and API testing only.
 
 This prototype includes:
 
-* Python loan evaluation logic
-* Input validation
-* Rule-based risk scoring
-* FastAPI backend
-* POST API endpoint for loan evaluation
-* Swagger testing
-* Postman test collection
-* Testing notes
+• Python loan evaluation logic
+• Input validation
+• Rule-based risk scoring
+• FastAPI backend
+• POST API endpoint for loan evaluation
+• Swagger testing
+• Postman test collection
+• Testing notes
+
+## Automated Decision Policy
+
+SmartLoan Stage 1 makes loan decisions automatically without a human loan officer or manual review.
+
+The current decision policy is:
+
+• Approved: The application is valid and no risk factors are identified.
+• Rejected: The application is valid but one or more risk factors are identified.
+• Validation Error: Required data is missing or invalid, so the system does not make an approval or rejection decision.
+
+The current system does not use:
+
+• Manual review
+•  Loan officer approval
+•  Review Required
+• More Information Required
+
+All current decisions are made automatically using validation rules and rule-based risk checks.
 
 ## Current Limitations
 
@@ -157,18 +176,18 @@ The API was tested using Swagger and Postman.
 
 Postman test cases include:
 
-* Good applicant → Approved
-* Missed payments → Rejected
-* Low credit score → Rejected
-* High debt → Rejected
-* High expenses → Rejected
-* Requested loan amount too high → Rejected
-* Missing input → Validation error
-* Invalid credit score → Validation error
-* Multiple risk factors → High risk
-* Underage applicant → Validation error
-* Zero income → Validation error
-* Negative expenses → Validation error
+• Good applicant → Approved
+• Missed payments → Rejected
+• Low credit score → Rejected
+• High debt → Rejected
+• High expenses → Rejected
+• Requested loan amount too high → Rejected
+• Missing input → Validation error
+• Invalid credit score → Validation error 
+• Multiple risk factors → High risk
+• Underage applicant → Validation error
+• Zero income → Validation error
+• Negative expenses → Validation error
 
 All planned Postman test cases returned the expected JSON responses.
 
@@ -178,8 +197,8 @@ The Stage 1 backend prototype is working locally through FastAPI and has been te
 
 ## Next Possible Improvements
 
-* Add more detailed repayment ability logic
-* Add structured request/response models using Pydantic
-* Add automated Python test cases
-* Add database storage later if required
-* Add future evidence verification logic in a later stage
+• Add more detailed repayment ability logic
+• Add structured request/response models using Pydantic
+• Add automated Python test cases
+• Add database storage later if required
+• Add future evidence verification logic in a later stage
