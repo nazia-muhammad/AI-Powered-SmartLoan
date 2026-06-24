@@ -4,10 +4,10 @@
 
 AI-Powered SmartLoan is a Stage 1 backend prototype for evaluating basic loan eligibility and risk.
 
-The prototype accepts customer loan application data, validates the input, applies simple rule-based risk checks, and returns a structured JSON response with:
+The prototype accepts customer loan application data, validates the input, applies simple rule-based risk checks and returns a structured JSON response with:
 
 * Decision: Approved or Rejected
-* Risk level: Low, Medium, or High
+* Risk level: Low, Medium or High
 * Risk score
 * Reasons for the decision
 * Validation errors when input is missing or invalid
@@ -27,14 +27,51 @@ This prototype includes:
 * Postman test collection
 * Testing notes
 
-This prototype does not include:
+## Current Limitations
 
-* Database storage
-* Frontend user interface
-* Real bank integrations
-* Real credit bureau checks
-* Manual review workflow
-* Full AI/ML model
+The current Stage 1 prototype does not include:
+
+Database storage
+Frontend user interface
+Real bank integrations
+Real credit bureau checks
+Employer or KYC verification
+PDF, image, or CSV/Excel processing
+Manual review workflow
+Full AI/ML model
+Production-level authentication and security
+
+## Use Cases
+
+The current Postman tests are mapped to these Stage 1 use cases:
+
+UC1 — Good Applicant - Approved
+UC2 — Missed Payments - Rejected
+UC3 — Low Credit Score - Rejected
+UC4 — High Debt - Rejected
+UC5 — High Expenses - Rejected
+UC6 — Loan Amount Too High - Rejected
+UC7 — Multiple Risk Factors - High Risk
+UC8 — Missing or Invalid Application Data
+
+## Current Input Source
+
+The current Stage 1 prototype uses customer-provided API/JSON data only.
+
+The system validates the submitted values and applies rule-based eligibility and risk checks. It does not currently verify information through external documents or third-party systems.
+
+## Future Input Sources
+
+Future stages may explore:
+
+Synthetic or sandbox bank transaction data
+Mock credit bureau data
+Mock employer and KYC verification data
+PDF documents such as bank statements and payslips
+Images such as ID cards and document screenshots
+CSV/Excel applicant and financial records
+
+These sources are future scope and are not processed by the current Stage 1 prototype.
 
 ## Project Files
 

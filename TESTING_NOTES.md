@@ -33,6 +33,29 @@ The API was tested using a saved Postman collection. The endpoint accepts applic
 | Zero Income - Validation Error          | `monthly_income = 0`                         | Validation error                 |
 | Negative Expenses - Validation Error    | `monthly_expenses = -1000`                   | Validation error                 |
 
+## Use Case Mapping
+
+The Postman test cases are mapped to the current SmartLoan Stage 1 use cases as follows:
+
+* UC1 — Good Applicant - Approved
+* UC2 — Missed Payments - Rejected
+* UC3 — Low Credit Score - Rejected
+* UC4 — High Debt - Rejected
+* UC5 — High Expenses - Rejected
+* UC6 — Loan Amount Too High - Rejected
+* UC7 — Multiple Risk Factors - High Risk
+* UC8 — Missing or Invalid Application Data
+
+UC8 includes:
+
+* Missing Input - Validation Error
+* Invalid Credit Score - Validation Error
+* Underage Applicant - Validation Error
+* Zero Income - Validation Error
+* Negative Expenses - Validation Error
+
+The current tests use customer-provided API/JSON data only. The system does not verify external documents or third-party data in Stage 1.
+
 ## Result
 
 All planned Postman test cases returned the expected JSON responses.
