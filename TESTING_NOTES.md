@@ -79,3 +79,24 @@ Current values:
 • Current input source → input_source: customer_api_json
 
 These fields improve response clarity and prepare the system for future input sources. 
+
+## Regression Test Results
+
+The SmartLoan Stage 1 Postman collection was retested after adding `decision_category` and `input_source` to the API responses.
+
+All 12 saved requests passed successfully:
+
+• UC1 — Good Applicant Approved
+• UC2 — Missed Payments Rejected
+• UC3 — Low Credit Score Rejected
+• UC4 — High Debt Rejected
+• UC5 — High Expenses Rejected
+• UC6 — Loan Amount Too High Rejected
+• UC7 — Multiple Risk Factors High Risk
+• UC8 — Missing Input
+• UC8 — Invalid Credit Score
+• UC8 — Underage Applicant
+• UC8 — Zero Income
+• UC8 — Negative Expenses
+
+Valid applications returned the expected approval or rejection decision. Invalid applications returned validation errors without producing a loan decision.
