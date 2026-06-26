@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-AI-Powered SmartLoan is a Stage 1 backend prototype for evaluating basic loan eligibility and risk.
+AI-Powered SmartLoan Version 1.0 is a backend prototype developed through Iterations 1–6 for evaluating basic loan eligibility and risk.
 
 The prototype accepts customer loan application data, validates the input, applies simple rule-based risk checks and returns a structured JSON response with:
 
@@ -26,10 +26,13 @@ This prototype includes:
 • Swagger testing
 • Postman test collection
 • Testing notes
+• Pydantic request and response models
+• Automatic data-type and value validation
+• Structured validation-error responses
 
 ## Automated Decision Policy
 
-SmartLoan Stage 1 makes loan decisions automatically without a human loan officer or manual review.
+SmartLoan currently makes loan decisions automatically without a human loan officer or manual review.
 
 The current decision policy is:
 
@@ -48,7 +51,7 @@ All current decisions are made automatically using validation rules and rule-bas
 
 ## Current Limitations
 
-The current Stage 1 prototype does not include:
+The current SmartLoan Version 1.0 prototype, developed through Iterations 1–6, does not include:
 
 Database storage
 Frontend user interface
@@ -62,7 +65,7 @@ Production-level authentication and security
 
 ## Use Cases
 
-The current Postman tests are mapped to these Stage 1 use cases:
+The current Postman tests are mapped to the SmartLoan Version 1.0 use cases:
 
 UC1 — Good Applicant - Approved
 UC2 — Missed Payments - Rejected
@@ -75,13 +78,13 @@ UC8 — Missing or Invalid Application Data
 
 ## Current Input Source
 
-The current Stage 1 prototype uses customer-provided API/JSON data only.
+SmartLoan Version 1.0 uses customer-provided API/JSON data only.
 
 The system validates the submitted values and applies rule-based eligibility and risk checks. It does not currently verify information through external documents or third-party systems.
 
 ## Future Input Sources
 
-Future stages may explore:
+Future iterations may explore:
 
 Synthetic or sandbox bank transaction data
 Mock credit bureau data
@@ -90,7 +93,7 @@ PDF documents such as bank statements and payslips
 Images such as ID cards and document screenshots
 CSV/Excel applicant and financial records
 
-These sources are future scope and are not processed by the current Stage 1 prototype.
+These sources are future scope and are not processed by SmartLoan Version 1.0.
 
 ## Project Files
 
@@ -99,6 +102,7 @@ These sources are future scope and are not processed by the current Stage 1 prot
 | `loan_logic.py`    | Contains validation, risk scoring, and decision logic |
 | `main.py`          | Contains the FastAPI app and API routes               |
 | `TESTING_NOTES.md` | Contains the Postman testing summary and test cases   |
+| `models.py`        | Contains Pydantic request, response, and validation-error models |
 
 ## API Endpoint
 
@@ -152,8 +156,7 @@ The endpoint accepts applicant data as JSON and returns the loan evaluation resu
     "No missed payments found.",
     "Requested loan amount is acceptable."
   ],
- "input_source": "customer_api_json"
-
+"input_source": "customer_api_json"
 }
 ```
 
@@ -177,6 +180,8 @@ or test the API in Postman using:
 
 The API was tested using Swagger and Postman.
 
+Pydantic validation was tested for missing fields, incorrect data types, invalid value ranges, and structured HTTP 422 validation responses.
+
 Postman test cases include:
 
 • Good applicant → Approved
@@ -192,16 +197,17 @@ Postman test cases include:
 • Zero income → Validation error
 • Negative expenses → Validation error
 
-All planned Postman test cases returned the expected JSON responses.
+All 12 planned Postman requests returned the expected status codes and JSON responses.
 
 ## Current Status
 
-The Stage 1 backend prototype is working locally through FastAPI and has been tested using Postman.
+SmartLoan Version 1.0, developed through Iterations 1–6, is working locally through FastAPI and has been tested using Swagger and Postman.
 
 ## Next Possible Improvements
 
-• Add more detailed repayment ability logic
-• Add structured request/response models using Pydantic
-• Add automated Python test cases
-• Add database storage later if required
-• Add future evidence verification logic in a later stage
+• Add automated Python tests using Pytest
+• Add database storage
+• Add more detailed repayment-ability logic
+• Add future evidence-verification logic in a later iteration
+• Continue improving API documentation
+

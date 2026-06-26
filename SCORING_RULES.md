@@ -1,8 +1,8 @@
-# SmartLoan Stage 1 — Scoring Rules
+# SmartLoan Version 1.0 — Scoring Rules
 
 ## Purpose
 
-This document explains how the current SmartLoan Stage 1 prototype calculates risk and makes an automatic loan decision.
+This document explains how the SmartLoan Version 1.0 prototype calculates risk and makes an automatic loan decision.
 
 The current system uses rule-based checks. It does not use a machine-learning model or human loan officer.
 
@@ -55,7 +55,7 @@ Therefore:
 | Valid application with one or more identified risk factors | Rejected         |
 | Missing or invalid application data                        | Validation Error |
 
-SmartLoan Stage 1 approves an application only when no current risk conditions are identified.
+SmartLoan Version 1.0 approves an application only when no current risk conditions are identified.
 
 The current system does not use:
 
@@ -100,13 +100,12 @@ The following fields are currently required but do not add or remove risk points
 • bank balance
 • requested loan duration
 
-These fields may be used in future versions after their rules and thresholds are formally designed.
-
+These fields may be used in future iterations after their rules and thresholds are formally designed.
 ---
 
 ## Current Status
 
-The current scoring rules match the Stage 1 decision policy:
+The current scoring rules match the SmartLoan Version 1.0 decision policy:
 
 • no identified risk factors → Approved
 • one or more identified risk factors → Rejected
@@ -118,4 +117,4 @@ Any future scoring change must also be updated in:
 • README
 • testing notes
 • Postman tests
-• Loop requirements
+• Loop project document

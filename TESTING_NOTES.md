@@ -8,13 +8,14 @@ Local test URL:
 
 `http://127.0.0.1:8002/loan/evaluate`
 
-## Testing Tool
+## Testing Tools
 
-Postman
+• Swagger
+• Postman
 
 ## Test Summary
 
-The API was tested using a saved Postman collection. The endpoint accepts applicant data as JSON, validates the input, applies rule-based risk checks, and returns a JSON response with decision, risk level, risk score, reasons, or validation errors.
+The API was tested using Swagger and the saved Postman collection SmartLoan API Tests — Iterations 1–6. The endpoint uses Pydantic to validate applicant data before applying rule-based risk checks and returning a structured JSON response.
 
 ## Test Cases Covered
 
@@ -35,41 +36,41 @@ The API was tested using a saved Postman collection. The endpoint accepts applic
 
 ## Use Case Mapping
 
-The Postman test cases are mapped to the current SmartLoan Stage 1 use cases as follows:
+The Postman test cases are mapped to the SmartLoan Version 1.0 use cases as follows:
 
-* UC1 — Good Applicant - Approved
-* UC2 — Missed Payments - Rejected
-* UC3 — Low Credit Score - Rejected
-* UC4 — High Debt - Rejected
-* UC5 — High Expenses - Rejected
-* UC6 — Loan Amount Too High - Rejected
-* UC7 — Multiple Risk Factors - High Risk
-* UC8 — Missing or Invalid Application Data
+• UC1 — Good Applicant - Approved
+• UC2 — Missed Payments - Rejected
+• UC3 — Low Credit Score - Rejected
+• UC4 — High Debt - Rejected
+• UC5 — High Expenses - Rejected
+• UC6 — Loan Amount Too High - Rejected
+• UC7 — Multiple Risk Factors - High Risk
+• UC8 — Missing or Invalid Application Data
 
 UC8 includes:
 
-* Missing Input - Validation Error
-* Invalid Credit Score - Validation Error
-* Underage Applicant - Validation Error
-* Zero Income - Validation Error
-* Negative Expenses - Validation Error
+• Missing Input - Validation Error
+• Invalid Credit Score - Validation Error
+• Underage Applicant - Validation Error
+• Zero Income - Validation Error
+• Negative Expenses - Validation Error
 
-The current tests use customer-provided API/JSON data only. The system does not verify external documents or third-party data in Stage 1.
+The current tests use customer-provided API/JSON data only. SmartLoan Version 1.0 does not verify external documents or third-party data.
 
 ## Result
 
-All planned Postman test cases returned the expected JSON responses.
+All 12 planned Postman requests returned the expected status codes and JSON responses.
 
 ## Current Status
 
-The Stage 1 backend prototype is working locally through FastAPI and has been tested using Postman.
+SmartLoan Version 1.0, developed through Iterations 1–6, is working locally through FastAPI and has been tested using Swagger and Postman.
 
 ## API Response Fields
 
 The SmartLoan API now includes two additional fields in every response:
 
-• decision_category - identifies whether the result is an approval, rejection or validation error. 
-• input_source - records where the application data come from. 
+• decision_category - identifies whether the result is an approval, rejection, or validation error.
+• input_source - records where the application data comes from.
 
 Current values:
 
@@ -82,9 +83,9 @@ These fields improve response clarity and prepare the system for future input so
 
 ## Regression Test Results
 
-The SmartLoan Stage 1 Postman collection was retested after adding `decision_category` and `input_source` to the API responses.
+The SmartLoan API Tests — Iterations 1–6 Postman collection was rerun after adding Pydantic validation, response models, decision_category, and input_source.
 
-All 12 saved requests passed successfully:
+All 12 saved requests returned the expected status codes and JSON responses:
 
 • UC1 — Good Applicant Approved
 • UC2 — Missed Payments Rejected
@@ -100,3 +101,5 @@ All 12 saved requests passed successfully:
 • UC8 — Negative Expenses
 
 Valid applications returned the expected approval or rejection decision. Invalid applications returned validation errors without producing a loan decision.
+
+The Postman Collection Runner completed with no request errors. The collection currently contains no automated Postman test scripts. Automated Python tests will be added using Pytest in Iteration 7.
