@@ -31,6 +31,11 @@ required_fields = [
     "requested_loan_duration"
 ]
 
+accepted_status = [
+    "employed",
+    "self-employed",
+    "unemployed"
+]
 
 # This function checks whether the input data is complete and valid
 def validate_input(applicant):
@@ -76,6 +81,21 @@ def validate_input(applicant):
     # Check requested loan duration rule
     if "requested_loan_duration" in applicant and applicant["requested_loan_duration"] <= 0:
         errors.append("Requested loan duration must be greater than 0.")
+
+    # Check employment duration rule
+    if "employment_duration" in applicant and applicant["employment_duration"] <= 0 and applicant[
+        "employment_status"] != "unemployed":
+        errors.append("Employment duration must be greater than 0.")
+
+    # Check bank balance rule
+    if "bank_balance" in applicant and applicant["bank_balance"] < 0:
+        errors.append("Bank balance cannot be negative.")
+
+    if "employment_status" in applicant and not isinstance(applicant["employment_status"], str):
+        errors.append("Employment status should not be a number.")
+
+    if "employment_status" in applicant and applicant["employment_status"] not in accepted_status:
+        errors.append("Employment status should be among the choices.")
         
     # If errors exist, return invalid result 
     if errors:
@@ -138,20 +158,44 @@ def calculate_risk(applicant):
         reasons.append("Requested loan amount is high compared to income.")
     else:
         reasons.append("Requested loan amount is acceptable.")
-    
+
+    # Check employment duration
+    if applicant["employment_duration"] < 12:
+        risk_score += 2
+        reasons.append("Employment duration is low.")
+    else:
+        reasons.append("Employment duration is acceptable.")
+
+    # Check bank balance compared to monthly expenses
+    if applicant["bank_balance"] < applicant["monthly_expenses"] * 3:
+        risk_score += 2
+        reasons.append("Bank balance is too low compared to monthly expenses.")
+    else:
+        reasons.append("Bank balance is acceptable.")
+
+    # Check employment status
+    if applicant["employment_status"] == "unemployed":
+        risk_score += 4
+        reasons.append("Employment status is unemployed.")
+    elif applicant["employment_status"] == "self-employed":
+        risk_score += 2
+        reasons.append("Employment status is self-employed.")
+    else:
+        reasons.append("Employment status is acceptable.")
+
     # Convert risk score into risk level
-    if risk_score == 0:
+    if risk_score <= 5:
         risk_level = "Low"
-    elif risk_score <= 3:
+    elif risk_score < 13 and risk_score >= 6:
         risk_level = "Medium"
     else:
-        risk_level = "High" 
-      
+        risk_level = "High"
+
     # Return risk result
     return {
         "risk_score": risk_score,
         "risk_level": risk_level,
-        "reasons": reasons 
+        "reasons": reasons
     }
     
 # This function makes the final loan decision 
